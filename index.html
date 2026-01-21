@@ -233,7 +233,8 @@
                     disabled
                   />
                 </div>
-
+                <!-- Button to copy the result -->
+                <button class="btn btn-light" onclick="copyResult()">Copy Result</button>
                 <div class="word-display-area" id="word-area">
                   <div id="word-result"></div>
                   <button id="speak-btn" onclick="speakResult()" disabled title="Speak Result">
@@ -275,6 +276,7 @@
                   <button class="btn btn-light" onclick="appendToResult('.')">.</button>
                   <button class="btn btn-light" onclick="appendToResult(0)">0</button>
                   <button class="btn btn-operator" onclick="operatorToResult('-')">−</button>
+                  <button class="btn btn-operator" onclick="percentToResult('%')">%</button>
                   <button class="btn btn-equals" onclick="calculateResult()">=</button>
                 </div>
 
