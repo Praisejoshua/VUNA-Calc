@@ -568,7 +568,8 @@
                 <div class="calculator">
                   <div class="display-container">
                     <input type="text" class="form-control" id="result" placeholder="0" disabled />
-                    <span class="input-group-text" id="copy-icon" style="cursor:pointer;" onclick="copyResult()">📋</span>
+                    <span class="input-group-text" id="copy-icon" style="cursor:pointer;"
+                      onclick="copyResult()">📋</span>
                   </div>
                   <div id="memoryIndicator" style="font-weight:bold; visibility:hidden; margin:5px 10px;">
                     M
@@ -614,6 +615,7 @@
                     </div>
                     <div id="diff-output" class="diff-outputx"></div>
                   </div>
+
                   <!-- Geometry Modal -->
                   <div id="geometryModal" style="
 display:none;
@@ -649,12 +651,6 @@ border-radius:15px;">
                   </div>
 
                   <div class="btn-grid">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <input class="btn btn-info btn-block w-100" type="button" value="↻ REDO" id="redoBtn" onclick="redoCalculation()" />
-                      </div>
-                    </div>
-
                     <!-- Row 1 -->
                     <button class="btn btn-light" onclick="bracketToResult('(')">(</button>
                     <button class="btn btn-light" onclick="bracketToResult(')')">)</button>
@@ -698,11 +694,10 @@ border-radius:15px;">
                     <button class="btn btn-power btn-special" onclick="calculateCube()">x³</button>
                     <button class="btn btn-special" onclick="cubeRootResult()">∛x</button>
                     <button class="btn btn-special" onclick="calculateReciprocal()" title="Reciprocal: 1/x">1/x</button>
-                    
+
                     <!-- Row 7 -->
                     <button class="btn btn-special" onclick="calculateSquareRoot()">√</button>
-                    <button class="btn btn-action" onclick="factors()"
-                      stylex="grid-column: span 2;">Factors</button>
+                    <button class="btn btn-action" onclick="factors()" stylex="grid-column: span 2;">Factors</button>
 
                     <!-- Row 7 - Permutation & Combination -->
                     <button class="btn btn-special" onclick="calculatePermutation()"
@@ -719,12 +714,25 @@ border-radius:15px;">
                     <button class="btn btn-special" onclick="memorySubtract()">M-</button>
 
                     <!--  Row 8                  -->
+                    <div class="btn-group" role="" style="position:relative;">
+                      <button class="btn btn-special" id="dpMainBtn">
+                        ⌃ <span id="dpLabel">2dp</span> ▾
+                      </button>
+
+                      <ul  id="dpDropdownMenu"
+                        style="display:none; position:absolute; top:100%; left:0; list-style:none; padding:4px 0; margin:0; z-index:999; min-width:80px;">
+                        <li class="btn btn-special"><a href="#" onclick="setDP(1); return false;">⌃ 1dp</a></li>
+                        <li class="btn btn-special"><a href="#" onclick="setDP(2); return false;">⌃ 2dp</a></li>
+                        <li class="btn btn-special"><a href="#" onclick="setDP(3); return false;">⌃ 3dp</a></li>
+                      </ul>
+                    </div>
                     <button class="btn btn-special" onclick="tenPower()">10<sup>x</sup></button>
-                    <button id="voice-input-btn" class="btn btn-special" aria-label="Speak calculation input" onclick="startVoiceInput()">🎙️</button>
+                    <button id="voice-input-btn" class="btn btn-special" aria-label="Speak calculation input"
+                      onclick="startVoiceInput()">🎙️</button>
                     <button class="btn btn-operator" onclick="convertToHex()">HEX</button>
                     <button class="btn btn-operator" onclick="openGeometry()">📐 Geo</button>
-
                     <!-- Row 9 -->
+                    <button class="btn btn-info" onclick="redoCalculation()" id="redoBtn">↻ REDO</button>
                     <button class="btn btn-equals" onclick="calculateResult()" stylex="grid-column: span 3;">=</button>
                   </div>
 
@@ -820,6 +828,7 @@ border-radius:15px;">
                                   <span class="input-group-text" id="temp-result">0</span>
                                 </div>
                               </div>
+
                               <!-- Currency Conversion -->
                               <div class="mb-3">
                                 <label class="form-label small" style="font-weight: 600;">Currency</label>
@@ -858,8 +867,9 @@ border-radius:15px;">
                                 <label class="form-label small" style="font-weight: 600;">Area</label>
                                 <div class="input-group input-group-sm">
                                   <input type="number" class="form-control" id="area-value" placeholder="Value"
-                                  value="1" oninput="convertUnit('area')">
-                                  <select class="form-select form-select-sm" id="from-area" onchange="convertUnit('area')">
+                                    value="1" oninput="convertUnit('area')">
+                                  <select class="form-select form-select-sm" id="from-area"
+                                    onchange="convertUnit('area')">
                                     <option value="sqm">m²</option>
                                     <option value="sqkm">km²</option>
                                     <option value="sqmile">mi²</option>
@@ -870,7 +880,8 @@ border-radius:15px;">
                                     <option value="acre">acre</option>
                                   </select>
                                   <span class="input-group-text">→</span>
-                                  <select class="form-select form-select-sm" id="to-area" onchange="convertUnit('area')">
+                                  <select class="form-select form-select-sm" id="to-area"
+                                    onchange="convertUnit('area')">
                                     <option value="sqmile">mi²</option>
                                     <option value="sqm">m²</option>
                                     <option value="sqkm">km²</option>
@@ -888,8 +899,9 @@ border-radius:15px;">
                                 <label class="form-label small" style="font-weight: 600;">Data Storage</label>
                                 <div class="input-group input-group-sm">
                                   <input type="number" class="form-control" id="data-value" placeholder="Value"
-                                  value="1" oninput="convertUnit('data')">
-                                  <select class="form-select form-select-sm" id="from-data" onchange="convertUnit('data')">
+                                    value="1" oninput="convertUnit('data')">
+                                  <select class="form-select form-select-sm" id="from-data"
+                                    onchange="convertUnit('data')">
                                     <option value="bit">bit</option>
                                     <option value="byte">B</option>
                                     <option value="kb">KB</option>
@@ -898,7 +910,8 @@ border-radius:15px;">
                                     <option value="tb">TB</option>
                                   </select>
                                   <span class="input-group-text">→</span>
-                                  <select class="form-select form-select-sm" id="to-data" onchange="convertUnit('data')">
+                                  <select class="form-select form-select-sm" id="to-data"
+                                    onchange="convertUnit('data')">
                                     <option value="B">B</option>
                                     <option value="bit">bit</option>
                                     <option value="kb">KB</option>
@@ -958,15 +971,10 @@ border-radius:15px;">
 
                               <!-- Calculate Button -->
                               <div class="d-grid gap-2 mb-3">
-                                <button class="btn btn-primary btn-sm" onclick="calculatePhysics()">
-                                  Calculate
-                                </button>
-                                <button class="btn btn-outline-secondary btn-sm" onclick="clearPhysicsCalculator()">
-                                  Clear
-                                </button>
+                                <button class="btn btn-primary btn-sm" onclick="calculatePhysics()">Calculate</button>
+                                <button class="btn btn-outline-secondary btn-sm"
+                                  onclick="clearPhysicsCalculator()">Clear</button>
                               </div>
-
-                              <!-- Result Display -->
                               <div id="physics-result"></div>
                               <div class="calculator-display">
                                 <input type="text" id="result" readonly>
@@ -1009,26 +1017,17 @@ border-radius:15px;">
                                 <input type="number" class="form-control" id="pc-original"
                                   placeholder="Enter original value" value="100">
                               </div>
-
-                              <!-- New Value -->
                               <div class="mb-3">
                                 <label class="form-label small" style="font-weight: 600;">New Value</label>
                                 <input type="number" class="form-control" id="pc-new" placeholder="Enter new value"
                                   value="150">
                               </div>
-
-                              <!-- Calculate Button -->
                               <div class="d-grid gap-2 mb-3">
-                                <button class="btn btn-primary btn-sm" onclick="calculatePercentageChange()">
-                                  Calculate Change
-                                </button>
-                                <button class="btn btn-outline-secondary btn-sm" onclick="clearPercentageChange()">
-                                  Clear
-                                </button>
+                                <button class="btn btn-primary btn-sm" onclick="calculatePercentageChange()">Calculate
+                                  Change</button>
+                                <button class="btn btn-outline-secondary btn-sm"
+                                  onclick="clearPercentageChange()">Clear</button>
                               </div>
-                              <button onclick="toggleDNA()">🧬 Analyze</button>
-
-                              <!-- Result Display -->
                               <div id="pc-result" class="alert alert-info py-2 px-3 mb-0" style="display: none;">
                                 <div class="mb-2"><strong>Percentage Change:</strong> <span
                                     id="pc-change-value">0</span>%</div>
@@ -1037,13 +1036,6 @@ border-radius:15px;">
                                 <div><strong>Description:</strong> <span id="pc-description"
                                     style="font-style: italic; color: #555;"></span></div>
                               </div>
-                              <!-- Math Insight Feature -->
-                              <div id="math-insight" class="math-insight-box" style="display:none;"></div>
-
-                              <!-- ✅ NEW FEATURE GOES HERE -->
-                              <div id="expression-dna" class="math-insight-box" style="display:none;"></div>
-
-                              <!-- Examples -->
                               <div class="alert alert-light py-2 px-3 mt-3 mb-0 border" style="font-size: 0.85rem;">
                                 <strong>Examples:</strong><br>
                                 • Original: 100, New: 150 → <strong>50% increase</strong><br>
@@ -1066,8 +1058,9 @@ border-radius:15px;">
                           <div id="collapseQuadratic" class="accordion-collapse collapse"
                             aria-labelledby="headingQuadratic" data-bs-parent="#converterAccordion">
                             <div class="accordion-body">
-                              <p class="text-muted small mb-3">Solve quadratic equations in the form: ax² + bx + c = 0</p>
-                              
+                              <p class="text-muted small mb-3">Solve quadratic equations in the form: ax² + bx + c = 0
+                              </p>
+
                               <div class="row g-2 mb-3">
                                 <div class="col">
                                   <label class="form-label small" style="font-weight: 600;">a</label>
@@ -1096,8 +1089,10 @@ border-radius:15px;">
                               <!-- Result Display -->
                               <div id="quad-result" class="alert alert-info py-2 px-3 mb-0" style="display: none;">
                                 <div class="mb-2"><strong>Roots:</strong> <span id="quad-roots-value"></span></div>
-                                <div class="mb-2"><strong>Discriminant (D):</strong> <span id="quad-discriminant"></span></div>
-                                <div><strong>Description:</strong> <span id="quad-description" style="font-style: italic; color: #555;"></span></div>
+                                <div class="mb-2"><strong>Discriminant (D):</strong> <span
+                                    id="quad-discriminant"></span></div>
+                                <div><strong>Description:</strong> <span id="quad-description"
+                                    style="font-style: italic; color: #555;"></span></div>
                               </div>
 
                               <!-- Examples -->
@@ -1120,11 +1115,12 @@ border-radius:15px;">
                               <span>📊 Cubic Solver (ax³ + bx² + cx + d = 0)</span>
                             </button>
                           </h2>
-                          <div id="collapseCubic" class="accordion-collapse collapse"
-                            aria-labelledby="headingCubic" data-bs-parent="#converterAccordion">
+                          <div id="collapseCubic" class="accordion-collapse collapse" aria-labelledby="headingCubic"
+                            data-bs-parent="#converterAccordion">
                             <div class="accordion-body">
-                              <p class="text-muted small mb-3">Solve cubic equations in the form: ax³ + bx² + cx + d = 0</p>
-                              
+                              <p class="text-muted small mb-3">Solve cubic equations in the form: ax³ + bx² + cx + d = 0
+                              </p>
+
                               <div class="row g-2 mb-3">
                                 <div class="col">
                                   <label class="form-label small" style="font-weight: 600;">a</label>
@@ -1157,7 +1153,8 @@ border-radius:15px;">
                               <!-- Result Display -->
                               <div id="cubic-result" class="alert alert-info py-2 px-3 mb-0" style="display: none;">
                                 <div class="mb-2"><strong>Roots:</strong> <span id="cubic-roots-value"></span></div>
-                                <div><strong>Description:</strong> <span id="cubic-description" style="font-style: italic; color: #555;"></span></div>
+                                <div><strong>Description:</strong> <span id="cubic-description"
+                                    style="font-style: italic; color: #555;"></span></div>
                               </div>
 
                               <!-- Examples -->
@@ -1180,11 +1177,11 @@ border-radius:15px;">
                               <span>📈 Quartic Solver (ax⁴ + bx³ + cx² + dx + e = 0)</span>
                             </button>
                           </h2>
-                          <div id="collapseQuartic" class="accordion-collapse collapse"
-                            aria-labelledby="headingQuartic" data-bs-parent="#converterAccordion">
+                          <div id="collapseQuartic" class="accordion-collapse collapse" aria-labelledby="headingQuartic"
+                            data-bs-parent="#converterAccordion">
                             <div class="accordion-body">
                               <p class="text-muted small mb-3">Solve quartic equations: ax⁴ + bx³ + cx² + dx + e = 0</p>
-                              
+
                               <div class="row g-2 mb-3">
                                 <div class="col">
                                   <label class="form-label small" style="font-weight: 600;">a</label>
@@ -1221,7 +1218,8 @@ border-radius:15px;">
                               <!-- Result Display -->
                               <div id="quartic-result" class="alert alert-info py-2 px-3 mb-0" style="display: none;">
                                 <div class="mb-2"><strong>Roots:</strong> <span id="quartic-roots-value"></span></div>
-                                <div><strong>Description:</strong> <span id="quartic-description" style="font-style: italic; color: #555;"></span></div>
+                                <div><strong>Description:</strong> <span id="quartic-description"
+                                    style="font-style: italic; color: #555;"></span></div>
                               </div>
 
                               <!-- Examples -->
@@ -1356,10 +1354,13 @@ border-radius:15px;">
                               </div>
 
                               <!-- Result Display -->
-                              <div id="probability-result" class="alert alert-info py-2 px-3 mb-0" style="display: none;">
+                              <div id="probability-result" class="alert alert-info py-2 px-3 mb-0"
+                                style="display: none;">
                                 <div class="mb-2"><strong>Result:</strong> <span id="probability-value"></span></div>
-                                <div class="mb-2"><strong>Formula Used:</strong> <span id="probability-formula"></span></div>
-                                <div><strong>Explanation:</strong> <span id="probability-explanation" style="font-style: italic;"></span></div>
+                                <div class="mb-2"><strong>Formula Used:</strong> <span id="probability-formula"></span>
+                                </div>
+                                <div><strong>Explanation:</strong> <span id="probability-explanation"
+                                    style="font-style: italic;"></span></div>
                               </div>
 
                               <!-- Examples -->
@@ -1367,7 +1368,8 @@ border-radius:15px;">
                                 <strong>Examples:</strong><br>
                                 • <strong>Single Event:</strong> Rolling a 6 on a fair die (P = 1/6 ≈ 0.1667)<br>
                                 • <strong>P(A and B):</strong> Flipping heads twice in a row (0.5 * 0.5 = 0.25)<br>
-                                • <strong>P(A or B):</strong> Drawing a heart or a diamond from a deck (13/52 + 13/52 = 0.5)<br>
+                                • <strong>P(A or B):</strong> Drawing a heart or a diamond from a deck (13/52 + 13/52 =
+                                0.5)<br>
                                 • <strong>Binomial:</strong> Probability of exactly 3 heads in 5 coin flips ≈ 0.3125
                               </div>
                             </div>
@@ -1375,6 +1377,59 @@ border-radius:15px;">
                         </div>
                         <!-- END Probability Calculator Section -->
 
+                        <!-- Statistical Calculator -->
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingStatistics">
+                            <button class="accordion-button collapsed d-flex justify-content-between align-items-center"
+                              type="button" data-bs-toggle="collapse" data-bs-target="#collapseStatistics"
+                              aria-expanded="false" aria-controls="collapseStatistics">
+                              <span>📈 Statistics Calculator</span>
+                            </button>
+                          </h2>
+                          <div id="collapseStatistics" class="accordion-collapse collapse"
+                            aria-labelledby="headingStatistics" data-bs-parent="#converterAccordion">
+                            <div class="accordion-body">
+                              <p class="text-muted small mb-3">Calculate mean, median, mode, standard deviation, and
+                                more</p>
+                              <div class="mb-3">
+                                <label class="form-label small" style="font-weight: 600;">Enter Data
+                                  (comma-separated)</label>
+                                <textarea class="form-control" id="stats-data-input"
+                                  placeholder="e.g., 10, 20, 30, 40, 50" rows="3"></textarea>
+                                <small class="text-muted d-block mt-1">Separate numbers with commas</small>
+                              </div>
+                              <div class="d-grid gap-2 mb-3">
+                                <button class="btn btn-primary btn-sm" onclick="calculateStatistics()">Calculate
+                                  Statistics</button>
+                                <button class="btn btn-outline-secondary btn-sm"
+                                  onclick="clearStatistics()">Clear</button>
+                              </div>
+                              <div id="stats-result" class="alert alert-info py-3 px-3 mb-0"
+                                style="display: none; font-size: 0.9rem;">
+                                <div class="row">
+                                  <div class="col-md-6 mb-2">
+                                    <div><strong>Count:</strong> <span id="stat-count">0</span></div>
+                                    <div><strong>Sum:</strong> <span id="stat-sum">0</span></div>
+                                    <div><strong>Mean:</strong> <span id="stat-mean">0</span></div>
+                                    <div><strong>Median:</strong> <span id="stat-median">0</span></div>
+                                  </div>
+                                  <div class="col-md-6 mb-2">
+                                    <div><strong>Mode:</strong> <span id="stat-mode">N/A</span></div>
+                                    <div><strong>Min Value:</strong> <span id="stat-min">0</span></div>
+                                    <div><strong>Max Value:</strong> <span id="stat-max">0</span></div>
+                                    <div><strong>Std Dev:</strong> <span id="stat-stddev">0</span></div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="alert alert-light py-2 px-3 mt-3 mb-0 border" style="font-size: 0.85rem;">
+                                <strong>📌 Example:</strong> Input "10, 20, 30, 40, 50" to see all statistics calculated
+                                instantly.
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- END Statistical Calculator -->
+                        
                         <!-- BMI CALCULATOR SECTION -->
                         <div class="accordion-item">
                           <h2 class="accordion-header" id="headingBMI">
@@ -1384,8 +1439,8 @@ border-radius:15px;">
                               <span>⚖️ BMI Calculator</span>
                             </button>
                           </h2>
-                          <div id="collapseBMI" class="accordion-collapse collapse"
-                            aria-labelledby="headingBMI" data-bs-parent="#converterAccordion">
+                          <div id="collapseBMI" class="accordion-collapse collapse" aria-labelledby="headingBMI"
+                            data-bs-parent="#converterAccordion">
                             <div class="accordion-body">
                               <p class="text-muted small mb-3">Calculate your Body Mass Index (BMI)</p>
 
@@ -1415,7 +1470,8 @@ border-radius:15px;">
                               <div id="bmi-result" class="alert alert-info py-2 px-3 mb-0" style="display: none;">
                                 <div class="mb-2"><strong>BMI:</strong> <span id="bmi-value"></span></div>
                                 <div class="mb-2"><strong>Category:</strong> <span id="bmi-category"></span></div>
-                                <div><strong>Health Note:</strong> <span id="bmi-note" style="font-style: italic;"></span></div>
+                                <div><strong>Health Note:</strong> <span id="bmi-note"
+                                    style="font-style: italic;"></span></div>
                               </div>
                             </div>
                           </div>
